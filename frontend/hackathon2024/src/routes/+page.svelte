@@ -1,9 +1,24 @@
 <script>
-  import Navbar from "../lib/Navbar.svelte"
+  import Navbar from "$lib/Navbar.svelte";
+  import Sidebar from "$lib/+Sidebar.svelte";
 </script>
 
-  <main>
-   <Navbar />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <Sidebar />
+    <Navbar />
     <div class="container-fluid">
       <div class="d-flex justify-content-evenly" style="padding-top: 2em">
         <span
@@ -33,8 +48,8 @@
         class="d-flex justify-content-center"
         style="padding-left: 33%; padding-right: 33%"
       >
-        <div style="text-align: center; padding-top: 33%">
-          <h1>Flirt & Learn</h1>
+        <div style="text-align: center; padding-top: 15%">
+          <img src="/logo.png" alt="logo  " />
           <h3>where dating comes true</h3>
           <p>
             Try out our new AI-Powered Flirt Coach which helps you practice
