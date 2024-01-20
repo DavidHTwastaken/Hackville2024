@@ -1,6 +1,6 @@
 import os
 from flask_pymongo import PyMongo
-from flask import Flask
+from flask import Flask, jsonify
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -10,10 +10,9 @@ mongo = PyMongo(app)
 
 @app.route('/test',methods=['POST'])
 def test():
-    mongo.db.create_collection('users')
-    mongo.db.users.insert_one({'name': 'Jakob'})
-    data = mongo.db.users.find_one({'name':'Jakob'})
-    return data, 200
+    mongo.db.people.insert_one({'name': 'Jakob'})
+    data = mongo.db.people.find_one({'name':'Jakob'})
+    return jsonify({'data':str(data)}), 200
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=8080)
