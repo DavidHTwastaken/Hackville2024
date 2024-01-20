@@ -13,7 +13,9 @@ def flirt_respond(message: str):
         api_key=os.environ['OPENAI_API_KEY']
     )
 
-    prompt = 'Respond as though the user is trying to flirt with you. Respond with personalized tone.'
+    prompt = 'Write a short response as though the user messaged you flirtatiously.'
+    + 'Respond realistically given their message.'
+    +'Make the response 30 completion_tokens or less.'
     print("Preparing to flirt")
     chat_completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
