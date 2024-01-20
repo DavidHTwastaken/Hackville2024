@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
+# Sends a request to OpenAI to get a response to user's flirtatious message
+# message: str, cannot exceed 250 characters in length
 def flirt_respond(message: str):
     if len(message) > 250:
         raise ValueError("Message is too long")

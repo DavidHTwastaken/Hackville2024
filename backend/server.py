@@ -2,7 +2,7 @@ import os
 from flask import Flask, send_from_directory, request
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
-from chat_bot import flirt_respond
+from services.chat_bot import flirt_respond
 
 load_dotenv()
 

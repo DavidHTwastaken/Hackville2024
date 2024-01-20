@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
-from backend.chat_bot import flirt_respond
+from backend.services.chat_bot import flirt_respond
 def test_chat_bot():
     message = 'Hey what\'s up?'
     if len(sys.argv) > 1:
