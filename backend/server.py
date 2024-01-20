@@ -1,10 +1,13 @@
 import os
 from flask import Flask, send_from_directory
-from pymongo import PyMongo
+from flask_pymongo import PyMongo
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = os.getenv('MONGO_URI')
-db = PyMongo(app)
+app.config['MONGO_URI'] = os.environ['MONGO_URI']
+mongo = PyMongo(app)
 
 @app.route('/')
 def base():
@@ -15,4 +18,4 @@ def home(path):
     return send_from_directory('../frontend', path)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(debug=True, host='127.0.0.1', port=8080)
