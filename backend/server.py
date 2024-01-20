@@ -1,6 +1,10 @@
+import os
 from flask import Flask, send_from_directory
+from pymongo import PyMongo
 
 app = Flask(__name__)
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+db = PyMongo(app)
 
 @app.route('/')
 def base():
