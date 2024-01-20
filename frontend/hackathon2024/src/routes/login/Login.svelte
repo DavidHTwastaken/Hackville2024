@@ -19,7 +19,7 @@
                     <a href="#">Forgot password?</a>
                 </p>
                 <p class="register">
-                    Don’t have an account? <a href="#">Register</a>
+                    Don't have an account? <a href="#">Register</a>
                 </p>
             </form>
         </div>
@@ -31,7 +31,7 @@
         height: 100%;
         margin: 0;
         font-family: 'Nunito', sans-serif;
-        background: linear-gradient(to right, #6dd5ed, #2193b0); /* Fancy background */
+        background: linear-gradient(to right, #f5bdf6, #e889ee); /* Fancy background */
     }
     .login-container {
         min-height: 100vh; /* Make it fit the full screen */
@@ -55,7 +55,7 @@
         border: 1px solid #d1d3e2;
     }
     .btn-primary {
-        background-color: #4e73df;
+        background-color: #e889ee;
         border: none;
         border-radius: 5px;
         padding: 10px;
@@ -71,5 +71,4 @@
         text-align: center;
         margin-top: 15px;
     }
-</style>
 </style>
