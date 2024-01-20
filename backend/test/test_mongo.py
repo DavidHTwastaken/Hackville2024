@@ -13,7 +13,7 @@ def test():
     mongo.db.create_collection('users')
     mongo.db.users.insert_one({'name': 'Jakob'})
     data = mongo.db.users.find_one({'name':'Jakob'})
-    print(data)
+    return data, 200
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=8080)
