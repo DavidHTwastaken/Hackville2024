@@ -18,7 +18,7 @@
           <a class="nav-link" href="#">About US</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="src/routes/login/login.svelte">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../src/routes/+page.svelte"

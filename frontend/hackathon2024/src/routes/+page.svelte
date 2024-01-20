@@ -1,3 +1,7 @@
+<script>
+  import Navbar from "../lib/Navbar.svelte"
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +16,7 @@
     <title>Document</title>
   </head>
   <body>
+<<<<<<< HEAD
     <nav
       class="navbar d-flex navbar-expand-lg"
       style="background-color: #b6b6b6"
@@ -43,6 +48,9 @@
         </div>
       </div>
     </nav>
+=======
+   <Navbar />
+>>>>>>> main
     <div class="container-fluid">
       <div class="d-flex justify-content-evenly" style="padding-top: 2em">
         <span
