@@ -12,18 +12,13 @@
           <a class="nav-link" href="#">How it works</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Events</a>
+          <a class="nav-link" href="src/routes/flirts/flirts.svlete">Events</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About US</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="src/routes/login/login.svelte">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../src/routes/+page.svelte"
-            ><img src="/logo.png" /></a
-          >
         </li>
       </ul>
     </div>

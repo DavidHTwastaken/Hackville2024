@@ -1,5 +1,6 @@
 <script>
-  import Navbar from "../lib/Navbar.svelte"
+  import Navbar from "$lib/Navbar.svelte";
+  import Sidebar from "$lib/+Sidebar.svelte";
 </script>
 
 <!DOCTYPE html>
@@ -16,41 +17,8 @@
     <title>Document</title>
   </head>
   <body>
-<<<<<<< HEAD
-    <nav
-      class="navbar d-flex navbar-expand-lg"
-      style="background-color: #b6b6b6"
-    >
-      <div class="container-fluid">
-        <div
-          class="collapse navbar-collapse d-flex justify-content-center"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav nav-fill w-100">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">How it works</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../src/routes/flirts/flirts.svelte"
-                >Events</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About US</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-=======
-   <Navbar />
->>>>>>> main
+    <Sidebar />
+    <Navbar />
     <div class="container-fluid">
       <div class="d-flex justify-content-evenly" style="padding-top: 2em">
         <span
@@ -80,8 +48,8 @@
         class="d-flex justify-content-center"
         style="padding-left: 33%; padding-right: 33%"
       >
-        <div style="text-align: center; padding-top: 33%">
-          <h1>Flirt & Learn</h1>
+        <div style="text-align: center; padding-top: 15%">
+          <img src="/logo.png" alt="logo  " />
           <h3>where dating comes true</h3>
           <p>
             Try out our new AI-Powered Flirt Coach which helps you practice
