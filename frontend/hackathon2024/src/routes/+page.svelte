@@ -17,7 +17,7 @@
         <span
           class="btn btn-outline-secondary"
           style="padding-top: 1em; padding-bottom: 1em"
-          >Hesist about dating?</span
+          >Hesitant about dating?</span
         >
         <span
           class="btn btn-outline-secondary"
