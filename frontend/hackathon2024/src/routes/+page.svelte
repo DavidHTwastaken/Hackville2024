@@ -1,9 +1,7 @@
 <script>
-  import Navbar from "../lib/Navbar.svelte"
+  import Navbar from "$lib/Navbar.svelte";
 </script>
-
-  <main>
-   <Navbar />
+    <Navbar />
     <div class="container-fluid">
       <div class="d-flex justify-content-evenly" style="padding-top: 2em">
         <span
@@ -33,8 +31,8 @@
         class="d-flex justify-content-center"
         style="padding-left: 33%; padding-right: 33%"
       >
-        <div style="text-align: center; padding-top: 33%">
-          <h1>Flirt & Learn</h1>
+        <div style="text-align: center; padding-top: 15%">
+          <img src="/logo.png" alt="logo  " />
           <h3>where dating comes true</h3>
           <p>
             Try out our new AI-Powered Flirt Coach which helps you practice
@@ -45,4 +43,4 @@
       </div>
     </div>
     <footer style="background-color: #b6b6b6"></footer>
-  </main>
+
