@@ -14,7 +14,7 @@ async function post_message(message) {
         post_message(message).then(async (res)=>{
             const json = await res.json();
             try{
-            document.getElementById("chat-messages")?.textContent += json['msg'] + '\n';
+            
 }catch(e){
     console.log(e);
     alert("Message failed");

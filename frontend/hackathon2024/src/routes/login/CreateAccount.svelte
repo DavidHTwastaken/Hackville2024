@@ -12,6 +12,10 @@
     }
 
     document.getElementById("submit")?.addEventListener('click',(e)=>{
+<<<<<<< HEAD
+=======
+        console.log("hello")
+>>>>>>> parent of 2f006da (ad)
         const email = document.getElementById('inputEmail')?.textContent;
         const password = document.getElementById('inputPassword')?.textContent;
         if(!email || !password){
