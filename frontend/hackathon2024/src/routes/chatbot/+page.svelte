@@ -1,15 +1,16 @@
 <script>
   import { goto } from '$app/navigation';
-  import {onMount } from 'svelte';
+  import { onMount } from 'svelte';
   /**
    * @type {string | null}
    */
   let access_token;
   
-    onMount(()=>{
+    onMount(()=> {
       access_token = sessionStorage.getItem('access_token');
-  if(!access_token){
-      goto('/login')}});
+      if(!access_token){
+          goto('/login')}});
+
   let message = "";
   /**
    * @type {HTMLDivElement}

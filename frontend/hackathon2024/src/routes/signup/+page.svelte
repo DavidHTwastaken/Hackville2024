@@ -38,7 +38,7 @@ async function handleSignUp(){
                 <button on:click={handleSignUp} class="btn btn-primary">Create Account</button>
             </form>
             <p class="forgot-password">
-                <a href="Login.svelte">Login</a>
+                <a href="/login">Login</a>
             </p>
         </div>
     </div>
@@ -47,7 +47,7 @@ async function handleSignUp(){
 </main>
 
 <style>
-    body, html {
+    main {
         height: 100%;
         margin: 0;
         font-family: Georgia, sans-serif;

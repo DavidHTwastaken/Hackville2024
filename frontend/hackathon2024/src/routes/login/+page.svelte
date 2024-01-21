@@ -62,7 +62,7 @@ async function handleLogin(){
 </main>
 
     <style>
-    body, html {
+    main {
         height: 100%;
         margin: 0;
         font-family: Georgia, sans-serif;
