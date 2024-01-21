@@ -1,4 +1,10 @@
 <script>
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    /**
+     * @param {string} message
+     */
 async function post_message(message) {
     return await fetch("/api/chat", {
       method: "POST",
@@ -7,14 +13,14 @@ async function post_message(message) {
     });
 }
     document.getElementById("send-button")?.addEventListener('click',(e)=>{
-        const message = document.getElementById('chatInput')?.textContent;
+        const message = document.getElementById('chat-input')?.textContent;
         if(!message){
             return alert("Please enter a message");
         }
         post_message(message).then(async (res)=>{
             const json = await res.json();
             try{
-            document.getElementById("chat-messages")?.textContent += json['msg'] + '\n';
+            document.getElementById("chat-messages").textContent += json['msg'] + '\n';
 }catch(e){
     console.log(e);
     alert("Message failed");
@@ -25,11 +31,12 @@ async function post_message(message) {
 
   
   });
+  });
+
 
 </script>
 
 
-<Sidebar />
 <div class="chatbot-container">
   <div class="chat-messages" id="chat-messages">
     <!-- Chat messages will be appended here -->
