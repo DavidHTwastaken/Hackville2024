@@ -24,8 +24,14 @@ def base():
 @app.route('/chat', methods=['POST'])
 @jwt_required()
 def chat():
+    
     return jsonify({'msg': flirt_respond(request.json['message'])}), 200
 
+@app.route('/assess',methods=['POST'])
+@jwt_required()
+def assess():
+
+    return jsonify({'score': evaluate_rizz(request.json[''])})
 
 @app.route('/signup', methods=['POST'])
 def signup():
