@@ -29,23 +29,26 @@ def chat():
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    user = request.json.get('user', None)
-    pw = request.json.get('password', None)
+    user = request.form.get('user', None)
+    pw = request.form.get('password', None)
     if not user or not pw:
         return jsonify({'error': 'Bad username or password'}), 401
+    mongo.db.users.insert_one({'user': user, 'password': pw})
     access_token = create_access_token(identity=user)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token), 201
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    user = request.json.get('user', None)
-    pw = request.json.get('password', None)
+    user = request.form.get('user')
+    pw = request.form.get('password')
     if not user or not pw:
         return jsonify({'error': 'Bad username or password'}), 401
-    result = mongo.db.findOne({'user': user, 'password': pw})
+    data = mongo.db.users.find_one({'user': user, 'password': pw})
+    if not data:
+        return jsonify({'error': 'Bad username or password'}), 401
     access_token = create_access_token(identity=user)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token), 200
 
 
 if __name__ == '__main__':
