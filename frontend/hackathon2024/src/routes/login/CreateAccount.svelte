@@ -6,7 +6,7 @@
     <div class="login-container">
         <div class="login-box">
             <!-- Form with HTMX attributes -->
-            <form id="loginForm" hx-post="/login-endpoint" hx-target="#responseTarget" hx-swap="outerHTML">
+            <form id="creatAccountForm" hx-post="/account-endpoint" hx-target="#responseTarget" hx-swap="outerHTML">
                 <div class="form-group">
                     <label for="inputEmail">Email address: </label>
                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
@@ -15,13 +15,10 @@
                     <label for="inputPassword">Password: </label>
                     <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Create Account</button>
             </form>
             <p class="forgot-password">
-                <a href="./ForgotPassword.svelte">Forgot password?</a>
-            </p>
-            <p class="register">
-                Don't have an account? <a href="CreateAccount.svelte">Register</a>
+                <a href="Login.svelte">Login</a>
             </p>
         </div>
     </div>
@@ -29,7 +26,7 @@
     <div id="responseTarget"></div>
 </main>
 
-    <style>
+<style>
     body, html {
         height: 100%;
         margin: 0;
