@@ -13,8 +13,8 @@ def flirt_respond(message: str):
         api_key=os.environ['OPENAI_API_KEY']
     )
 
-    prompt = 'Write a short response as though the user messaged you flirtatiously.'
-    + 'Respond realistically given their message.'
+    prompt = 'Write a short response as though the user messaged you flirtatiously.' \
+    + 'Respond realistically given their message.' \
     +'Make the response 30 completion_tokens or less.'
     print("Preparing to flirt")
     chat_completion = client.chat.completions.create(
