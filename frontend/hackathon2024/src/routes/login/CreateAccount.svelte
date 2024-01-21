@@ -11,8 +11,7 @@
         });
     }
 
-    document.getElementById("submit")?.addEventListener('click',(e)=>{
-        console.log("hello")
+    document.getElementById("submit").addEventListener('click',(e)=>{
         const email = document.getElementById('inputEmail')?.textContent;
         const password = document.getElementById('inputPassword')?.textContent;
         if(!email || !password){
