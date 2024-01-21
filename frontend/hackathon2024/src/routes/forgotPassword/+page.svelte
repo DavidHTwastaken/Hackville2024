@@ -6,8 +6,8 @@
     <div class="login-box">
       <!-- Form with HTMX attributes -->
       <form
-        id="loginForm"
-        hx-post="/login-endpoint"
+        id="forgotPasswordForm"
+        hx-post="/password-endpoint"
         hx-target="#responseTarget"
         hx-swap="outerHTML"
       >
@@ -30,10 +30,19 @@
             placeholder="Password"
           />
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <div class="form-group">
+          <label for="newPassword">New Password: </label>
+          <input
+            type="password"
+            class="form-control"
+            id="newPassword"
+            placeholder="New Password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Change</button>
       </form>
       <p class="forgot-password">
-        <a href="./ForgotPassword.svelte">Forgot password?</a>
+        <a href="Login.svelte">Login</a>
       </p>
       <p class="register">
         Don't have an account? <a href="CreateAccount.svelte">Register</a>
@@ -102,7 +111,8 @@
   .btn-primary:hover {
     background-color: #f8aab0;
   }
-  .forgot-password {
+  .forgot-password,
+  .register {
     text-align: center;
     margin-top: 15px;
   }

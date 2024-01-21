@@ -1,24 +1,55 @@
 <script>
-  let gender = "male";
-  let age = 18; // Default age value
-  let confidenceLevel = 3;
-  let levelOfWarmness = 1;
-  let levelOfPlayfulness = 2;
-  let levelOfRudeness = 5;
-  let levelOfSpicyness = 5;
-</script>
+  import { onMount } from "svelte";
 
-<div class="sidenav">
-  <a class="nav-link" href="/src/routes/+page.svelte">
-    <img width="150" src="/logo.png" alt="logo" /></a
-  >
-  <a class="nav-link active" href="/src/routes/flirts/flirts.svelte">Learn</a>
-  <a class="nav-link" href="/src/routes/chatbot/chatbot.svelte">Chatbot</a><a
-    class="nav-link"
-    href="/src/routes/preferences/preferences.svelte">Preferences</a
-  >
-  <!-- Add more links as needed -->
-</div>
+  let formData = "";
+  let gender = "";
+  let age = "";
+  let confidenceLevel = "";
+  let levelOfWarmness = "";
+  let levelOfPlayfulness = "";
+  let levelOfRudeness = "";
+  let levelOfSpicyness = "";
+
+  function handleFormSubmit() {
+    let formData = {
+      gender: `${gender}`,
+      age: `${age}`,
+      confidenceLevel: `${confidenceLevel}`,
+      levelOfWarmness: `${levelOfWarmness}`,
+      levelOfPlayfulness: `${levelOfPlayfulness}`,
+      levelOfRudeness: `${levelOfRudeness}`,
+      levelOfSpicyness: `${levelOfSpicyness}`,
+    };
+
+    console.log(formData);
+
+    const saveFormData = async () => {
+      try {
+        const response = await fetch("", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          console.log("Form data sent successfully");
+        } else {
+          console.log("Error sending from data:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error sending from data: ", error);
+      }
+    };
+  }
+
+  onMount(() => {
+    console.log("Component is mounted!");
+  });
+
+  console.log(formData);
+</script>
 
 <main>
   <h1>Choose your preferences:</h1>
@@ -34,7 +65,6 @@
   <label>
     Age:
     <input type="text" min="18" max="50" bind:value={age} />
-    <!-- <span class="output">{age}</span> -->
   </label>
 
   <label>
@@ -97,7 +127,12 @@
     <span class="output">{levelOfSpicyness}</span>
   </label><br />
 
-  <input type="button" class="pref-btn" value="Save" />
+  <input
+    type="button"
+    class="pref-btn"
+    value="Save"
+    on:click={handleFormSubmit}
+  />
 </main>
 
 <link
@@ -108,30 +143,6 @@
 />
 
 <style>
-  .sidenav {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #f4f4f4; /* Background color of the sidebar */
-    border-right: 2px solid #ddd; /* Outline color */
-    padding-top: 20px;
-  }
-
-  .sidenav a {
-    padding: 8px 16px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #333; /* Text color */
-    display: block;
-  }
-
-  .sidenav a:hover {
-    background-color: #ddd; /* Hover color */
-  }
-
   h1 {
     text-align: center;
     padding-bottom: 20px;
