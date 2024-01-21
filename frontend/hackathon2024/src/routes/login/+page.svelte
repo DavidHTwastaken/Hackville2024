@@ -3,6 +3,17 @@
     import {onMount } from 'svelte';
     let email = "";
     let password = "";
+    /**
+   * @type {(access_token: string) => void}
+   */
+    let updateSessionStorage;
+
+  
+  onMount(()=>{
+    updateSessionStorage = (access_token)=>{
+  sessionStorage.setItem('access_token', access_token);
+}
+  });
 
 async function handleLogin(){
   if(!email || !password){
@@ -17,7 +28,7 @@ async function handleLogin(){
   if(!json.hasOwnProperty('access_token')){
     return alert("Authentication failed");
   }
-  sessionStorage.setItem('access_token', json['access_token']);
+  updateSessionStorage(json['access_token']);
   goto('/');
 }
 </script>

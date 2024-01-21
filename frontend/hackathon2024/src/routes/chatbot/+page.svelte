@@ -1,12 +1,28 @@
 <script>
   import { goto } from '$app/navigation';
   import {onMount } from 'svelte';
-  const access_token = sessionStorage.getItem('access_token');
+  /**
+   * @type {string | null}
+   */
+  let access_token;
+  
+    onMount(()=>{
+      access_token = sessionStorage.getItem('access_token');
   if(!access_token){
-    onMount(()=>goto('/login'));
-  }
+      goto('/login')}});
   let message = "";
-  let chatMessages = "";
+  /**
+   * @type {HTMLDivElement}
+   */
+  let chatMessages;
+
+  /**
+   * @param {string} reply
+   */
+  function updateChatLog(reply){
+    chatMessages.innerHTML += `<br>You: ${message}` + `<br>Bot: ${reply}`;
+    message = "";
+  }
 
 async function handleSend(){
   if(!message){
@@ -18,15 +34,17 @@ async function handleSend(){
       // @ts-ignore
       headers: { "Content-Type": "application/json; charset=UTF-8", "Authorization": `Bearer ${access_token}` }
     });
+  if(response.status === 401){
+    goto('/login');
+  }
   const json = await response.json();
-  chatMessages += json['msg'] + '\n';
+  updateChatLog(json['msg']);
 }
       
 </script>
 
 <div class="chatbot-container">
-  <div class="chat-messages" id="chat-messages">
-    {chatMessages}
+  <div bind:this={chatMessages} class="chat-messages" id="chat-messages">
   </div>
   <div class="chat-input-container">
     <input
