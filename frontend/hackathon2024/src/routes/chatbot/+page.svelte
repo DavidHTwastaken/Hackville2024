@@ -5,12 +5,15 @@
    * @type {string | null}
    */
   let access_token;
-  
-    onMount(()=> {
-      access_token = sessionStorage.getItem('access_token');
-      if(!access_token){
-          goto('/login')}});
-
+  onMount(()=> {
+    access_token = sessionStorage.getItem('access_token');
+    if(!access_token){
+      goto('/login')}});
+      
+  /**
+   * @type {{ bot: any; user: string; }[]}
+   */
+  const arr = []
   let message = "";
   /**
    * @type {HTMLDivElement}
@@ -29,9 +32,10 @@ async function handleSend(){
   if(!message){
     return alert("Please enter a message");
   }
+  const payload = arr.length === 0 ? { message: message } : { message: message, message_history: arr }
   const response = await fetch("/api/chat", {
       method: "POST",
-      body: JSON.stringify({ message: message }),
+      body: JSON.stringify(payload),
       // @ts-ignore
       headers: { "Content-Type": "application/json; charset=UTF-8", "Authorization": `Bearer ${access_token}` }
     });
@@ -39,6 +43,7 @@ async function handleSend(){
     goto('/login');
   }
   const json = await response.json();
+  arr.push({'bot': json['msg'], 'user': message});
   updateChatLog(json['msg']);
 }
       
