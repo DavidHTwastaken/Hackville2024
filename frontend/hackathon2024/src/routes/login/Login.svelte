@@ -6,7 +6,8 @@
     <div class="login-container">
         <div class="login-box">
             <!-- Form with HTMX attributes -->
-            <form id="loginForm" hx-post="/login-endpoint" hx-target="#responseTarget" hx-swap="outerHTML">
+            <!-- TODO: replace localhost IP with server's address -->
+            <form id="loginForm" hx-post="http://localhost:5000/login" hx-target="#responseTarget" hx-swap="outerHTML">
                 <div class="form-group">
                     <label for="inputEmail">Email address: </label>
                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
