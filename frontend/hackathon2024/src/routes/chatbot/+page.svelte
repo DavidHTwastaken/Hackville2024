@@ -16,7 +16,7 @@ async function handleSend(){
       method: "POST",
       body: JSON.stringify({ message: message }),
       // @ts-ignore
-      headers: { "Content-Type": "application/json; charset=UTF-8", "access_token": access_token }
+      headers: { "Content-Type": "application/json; charset=UTF-8", "Authorization": `Bearer ${access_token}` }
     });
   const json = await response.json();
   chatMessages += json['msg'] + '\n';

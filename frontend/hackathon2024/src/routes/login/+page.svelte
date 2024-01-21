@@ -1,5 +1,7 @@
 <script>
-let email = "";
+    import { goto } from '$app/navigation';
+    import {onMount } from 'svelte';
+    let email = "";
     let password = "";
 
 async function handleLogin(){
@@ -16,6 +18,7 @@ async function handleLogin(){
     return alert("Authentication failed");
   }
   sessionStorage.setItem('access_token', json['access_token']);
+  goto('/');
 }
 </script>
 

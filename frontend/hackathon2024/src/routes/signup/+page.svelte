@@ -1,4 +1,6 @@
 <script>
+      import { goto } from '$app/navigation';
+  import {onMount } from 'svelte';
     let email = "";
     let password = "";
 
@@ -16,6 +18,7 @@ async function handleSignUp(){
     return alert("Authentication failed");
   }
   sessionStorage.setItem('access_token', json['access_token']);
+  goto('/');
 }
 </script>
 

@@ -24,29 +24,28 @@ def base():
 @app.route('/chat', methods=['POST'])
 @jwt_required()
 def chat():
-    if 'access_token' not in request.headers:
-        return jsonify({'error': 'User is not signed in'}), 401
-    return jsonify({'msg': flirt_respond(request.form['message'])}), 200
+    return jsonify({'msg': flirt_respond(request.json['message'])}), 200
 
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    user = request.json.get('user')
-    pw = request.json.get('password')
+    user = request.json['email']
+    pw = request.json['password']
     if not user or not pw:
+        print(request.json)
         return jsonify({'error': 'Bad username or password'}), 401
-    mongo.db.users.insert_one({'user': user, 'password': pw})
+    mongo.db.users.insert_one({'email': user, 'password': pw})
     access_token = create_access_token(identity=user)
     return jsonify(access_token=access_token), 201
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    user = request.json.get('user')
-    pw = request.json.get('password')
+    user = request.json['email']
+    pw = request.json['password']
     if not user or not pw:
         return jsonify({'error': 'Bad username or password'}), 401
-    data = mongo.db.users.find_one({'user': user, 'password': pw})
+    data = mongo.db.users.find_one({'email': user, 'password': pw})
     if not data:
         return jsonify({'error': 'Bad username or password'}), 401
     access_token = create_access_token(identity=user)
