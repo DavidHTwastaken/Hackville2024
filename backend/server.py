@@ -4,7 +4,6 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 from services.chat_bot import flirt_respond
-from werkzeug.security import generate_password_hash, check_password_hash
 load_dotenv()
 
 app = Flask(__name__)
@@ -24,26 +23,27 @@ def base():
 @app.route('/chat', methods=['POST'])
 @jwt_required()
 def chat():
-    return jsonify({'msg': flirt_respond(request.form['message'])}), 200
+    return jsonify({'msg': flirt_respond(request.json.get('message'))}), 200
 
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    user = request.form.get('user', None)
-    pw = request.form.get('password', None)
+    print([i for i in request.form.items()])
+    user = request.json.get('email')
+    pw = request.json.get('password')
     if not user or not pw:
-        return jsonify({'error': 'Bad username or password'}), 401
-    mongo.db.users.insert_one({'user': user, 'password': pw})
+        return jsonify({'error': 'Bad email or password'}), 401
+    mongo.db.users.insert_one({'email': user, 'password': pw})
     access_token = create_access_token(identity=user)
     return jsonify(access_token=access_token), 201
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    user = request.form.get('user')
-    pw = request.form.get('password')
+    user = request.json.get('user')
+    pw = request.json.get('password')
     if not user or not pw:
-        return jsonify({'error': 'Bad username or password'}), 401
+        return jsonify({'error': 'Bad email or password'}), 401
     data = mongo.db.users.find_one({'user': user, 'password': pw})
     if not data:
         return jsonify({'error': 'Bad username or password'}), 401
