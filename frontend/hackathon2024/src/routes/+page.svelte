@@ -38,7 +38,7 @@
             Try out our new AI-Powered Flirt Coach which helps you practice
             flirting with real-time feedback and personalized lessons
           </p>
-          <button class="btn btn-outline-secondary">TRY NOW!</button>
+          <a class="btn btn-outline-secondary" href="/chatbot">TRY NOW!</a>
         </div>
       </div>
     </div>

@@ -1,28 +1,52 @@
 <script>
+  import { goto } from '$app/navigation';
+  import {onMount } from 'svelte';
+  const access_token = sessionStorage.getItem('access_token');
+  if(!access_token){
+    onMount(()=>goto('/login'));
+  }
+  let message = "";
+  let chatMessages = "";
+
+async function handleSend(){
+  if(!message){
+    return alert("Please enter a message");
+  }
+  const response = await fetch("/api/chat", {
+      method: "POST",
+      body: JSON.stringify({ message: message }),
+      // @ts-ignore
+      headers: { "Content-Type": "application/json; charset=UTF-8", "access_token": access_token }
+    });
+  const json = await response.json();
+  chatMessages += json['msg'] + '\n';
+}
+      
 </script>
 
 <div class="chatbot-container">
   <div class="chat-messages" id="chat-messages">
-    <!-- Chat messages will be appended here -->
+    {chatMessages}
   </div>
   <div class="chat-input-container">
     <input
+      bind:value={message}
       type="text"
       id="chat-input"
       class="form-control"
       placeholder="Type your message..."
     />
-    <button id="send-button">Send</button>
+    <button id="send-button" on:click={handleSend}>Send</button>
   </div>
 </div>
 <div class="sidenav">
-  <a class="nav-link" href="/src/routes/+page.svelte">
+  <a class="nav-link" href="/">
     <img width="150" src="/logo.png" alt="logo" /></a
   >
-  <a class="nav-link active" href="/src/routes/flirts/flirts.svelte">Learn</a>
-  <a class="nav-link" href="/src/routes/chatbot/chatbot.svelte">Chatbot</a><a
+  <a class="nav-link active" href="/flirts">Learn</a>
+  <a class="nav-link" href="/chatbot">Chatbot</a><a
     class="nav-link"
-    href="/src/routes/preferences/preferences.svelte">Preferences</a
+    href="/preferences">Preferences</a
   >
   <!-- Add more links as needed -->
 </div>

@@ -1,28 +1,41 @@
 <script>
+    let email = "";
+    let password = "";
 
+async function handleSignUp(){
+  if(!email || !password){
+    return alert("Please enter an email and a password");
+  }
+  const response = await fetch("/api/signup", {
+      method: "POST",
+      body: JSON.stringify({ email: email, password: password }),
+      headers: { "Content-Type": "application/json; charset=UTF-8" }
+    });
+  const json = await response.json();
+  if(!json.hasOwnProperty('access_token')){
+    return alert("Authentication failed");
+  }
+  sessionStorage.setItem('access_token', json['access_token']);
+}
 </script>
 
 <main>
     <div class="login-container">
         <div class="login-box">
             <!-- Form with HTMX attributes -->
-            <!-- TODO: replace localhost IP with server's address -->
-            <form id="loginForm" hx-post="http://localhost:5000/login" hx-target="#responseTarget" hx-swap="outerHTML">
+            <form id="creatAccountForm" >
                 <div class="form-group">
                     <label for="inputEmail">Email address: </label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input bind:value={email} type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <label for="inputPassword">Password: </label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input bind:value={password} type="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button on:click={handleSignUp} class="btn btn-primary">Create Account</button>
             </form>
             <p class="forgot-password">
-                <a href="./ForgotPassword.svelte">Forgot password?</a>
-            </p>
-            <p class="register">
-                Don't have an account? <a href="CreateAccount.svelte">Register</a>
+                <a href="Login.svelte">Login</a>
             </p>
         </div>
     </div>
@@ -30,7 +43,7 @@
     <div id="responseTarget"></div>
 </main>
 
-    <style>
+<style>
     body, html {
         height: 100%;
         margin: 0;
