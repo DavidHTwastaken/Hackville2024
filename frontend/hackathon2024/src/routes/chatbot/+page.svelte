@@ -1,15 +1,11 @@
 <script>
-    /**
-   * @param {string} message
-   */
-    async function post_message(message){
-        return await fetch("/api/chat",{
-            method: "POST",
-            body: JSON.stringify({message: message}),
-            headers: [{"Content-type": "application/json; charset=UTF-8"}]
-        });
-    }
-
+async function post_message(message) {
+    return await fetch("/api/chat", {
+      method: "POST",
+      body: JSON.stringify({ message: message }),
+      headers: { "Content-Type": "application/json; charset=UTF-8" }
+    });
+}
     document.getElementById("send-button")?.addEventListener('click',(e)=>{
         const message = document.getElementById('chatInput')?.textContent;
         if(!message){
@@ -25,9 +21,13 @@
 }        
 }
 );
-    });
-  import Sidebar from "$lib/Sidebar.svelte";
+
+
+  
+  });
+
 </script>
+
 
 <Sidebar />
 <div class="chatbot-container">

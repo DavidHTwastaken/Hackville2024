@@ -7,7 +7,7 @@
         return await fetch("/api/login",{
             method: "POST",
             body: JSON.stringify({email: email, password: password}),
-            headers: [{"Content-type": "application/json; charset=UTF-8"}]
+            headers: {"Content-Type": "application/json; charset=UTF-8"}
         });
     }
 
@@ -59,7 +59,7 @@
 </main>
 
     <style>
-    body, html {
+    main {
         height: 100%;
         margin: 0;
         font-family: Georgia, sans-serif;

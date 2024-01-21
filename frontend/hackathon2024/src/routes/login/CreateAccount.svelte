@@ -7,11 +7,11 @@
         return await fetch("/api/signup",{
             method: "POST",
             body: JSON.stringify({email: email, password: password}),
-            headers: [{"Content-type": "application/json; charset=UTF-8"}]
+            headers: {"Content-Type": "application/json; charset=UTF-8"}
         });
     }
 
-    document.getElementById("submit").addEventListener('click',(e)=>{
+    document.getElementById("submit")?.addEventListener('click',(e)=>{
         const email = document.getElementById('inputEmail')?.textContent;
         const password = document.getElementById('inputPassword')?.textContent;
         if(!email || !password){
@@ -56,7 +56,7 @@
 </main>
 
 <style>
-    body, html {
+    main {
         height: 100%;
         margin: 0;
         font-family: Georgia, sans-serif;
