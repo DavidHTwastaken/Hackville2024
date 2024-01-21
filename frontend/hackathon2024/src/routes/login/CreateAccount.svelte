@@ -1,12 +1,42 @@
 <script>
+    /**
+   * @param {string} email
+   * @param {string} password
+   */
+    async function post_email_pass(email, password){
+        return await fetch("/api/signup",{
+            method: "POST",
+            body: JSON.stringify({email: email, password: password}),
+            headers: [{"Content-type": "application/json; charset=UTF-8"}]
+        });
+    }
 
+    document.getElementById("submit")?.addEventListener('click',(e)=>{
+        console.log("hello")
+        const email = document.getElementById('inputEmail')?.textContent;
+        const password = document.getElementById('inputPassword')?.textContent;
+        if(!email || !password){
+            return alert("Please enter an email and a password");
+        }
+        post_email_pass(email, password).then(async (res)=>{
+            const json = await res.json();
+            try{
+            sessionStorage.setItem("access_token", json['access_token']);
+}catch(e){
+    console.log(e);
+    alert("Login failed");
+}        
+}
+).catch((e)=>console.log(e)
+);
+    });
 </script>
 
 <main>
     <div class="login-container">
         <div class="login-box">
             <!-- Form with HTMX attributes -->
-            <form id="creatAccountForm" hx-post="/account-endpoint" hx-target="#responseTarget" hx-swap="outerHTML">
+            <form id="creatAccountForm">
                 <div class="form-group">
                     <label for="inputEmail">Email address: </label>
                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
@@ -15,7 +45,7 @@
                     <label for="inputPassword">Password: </label>
                     <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Create Account</button>
+                <button id="submit" type="button" class="btn btn-primary">Create Account</button>
             </form>
             <p class="forgot-password">
                 <a href="Login.svelte">Login</a>

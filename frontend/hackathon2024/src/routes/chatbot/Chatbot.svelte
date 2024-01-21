@@ -1,4 +1,31 @@
 <script>
+    /**
+   * @param {string} message
+   */
+    async function post_message(message){
+        return await fetch("/api/chat",{
+            method: "POST",
+            body: JSON.stringify({message: message}),
+            headers: [{"Content-type": "application/json; charset=UTF-8"}]
+        });
+    }
+
+    document.getElementById("send-button")?.addEventListener('click',(e)=>{
+        const message = document.getElementById('chatInput')?.textContent;
+        if(!message){
+            return alert("Please enter a message");
+        }
+        post_message(message).then(async (res)=>{
+            const json = await res.json();
+            try{
+            
+}catch(e){
+    console.log(e);
+    alert("Message failed");
+}        
+}
+);
+    });
 </script>
 
 <div class="chatbot-container">
