@@ -19,7 +19,7 @@ async function handleLogin(){
   if(!email || !password){
     return alert("Please enter an email and a password");
   }
-  const response = await fetch("/api/signup", {
+  const response = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
       headers: { "Content-Type": "application/json; charset=UTF-8" }

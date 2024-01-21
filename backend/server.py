@@ -3,8 +3,7 @@ from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
-from services.chat_bot import flirt_respond
-from werkzeug.security import generate_password_hash, check_password_hash
+from services.chat_bot import flirt_respond, evaluate_rizz
 load_dotenv()
 
 app = Flask(__name__)
@@ -24,14 +23,19 @@ def base():
 @app.route('/chat', methods=['POST'])
 @jwt_required()
 def chat():
-    
-    return jsonify({'msg': flirt_respond(request.json['message'])}), 200
+    try:
+        message = request.json['message']
+    except Exception as e:
+        return jsonify({'error': f'Missing a message: {e}'}), 400
+    history = None
+    if 'history' in request.json:
+        history = request.json['history']
+    return jsonify({'msg': flirt_respond(message, message_history=history)}), 200
 
 @app.route('/assess',methods=['POST'])
 @jwt_required()
 def assess():
-
-    return jsonify({'score': evaluate_rizz(request.json[''])})
+    return jsonify({'score': evaluate_rizz(request.json['history'])})
 
 @app.route('/signup', methods=['POST'])
 def signup():

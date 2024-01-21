@@ -11,7 +11,7 @@
       goto('/login')}});
       
   /**
-   * @type {{ bot: any; user: string; }[]}
+   * @type {{ bot?: any; user: string; }[]}
    */
   const arr = []
   let message = "";
@@ -28,11 +28,27 @@
     message = "";
   }
 
+async function assessFlirting(){
+  arr.push({'user': message});
+  const response = await fetch("/api/assess", {
+      method: "POST",
+      body: JSON.stringify({'history': arr}),
+      // @ts-ignore
+      headers: { "Content-Type": "application/json; charset=UTF-8", "Authorization": `Bearer ${access_token}` }
+    });
+    const json = await response.json();
+    updateChatLog(json['score']);
+}
+
 async function handleSend(){
   if(!message){
     return alert("Please enter a message");
   }
-  const payload = arr.length === 0 ? { message: message } : { message: message, message_history: arr }
+  // TODO: Value is currently hard-coded
+  if(arr.length === 3){
+    return assessFlirting();
+  }
+  const payload = arr.length === 0 ? { message: message } : { message: message, history: arr }
   const response = await fetch("/api/chat", {
       method: "POST",
       body: JSON.stringify(payload),
