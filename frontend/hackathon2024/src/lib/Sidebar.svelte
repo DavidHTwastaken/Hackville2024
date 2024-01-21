@@ -1,11 +1,11 @@
 <div class="sidenav">
-  <a class="nav-link" href="/src/routes/+page.svelte">
+  <a class="nav-link" href="/">
     <img width="150" src="/logo.png" alt="logo" /></a
   >
-  <a class="nav-link active" href="/src/routes/flirts/flirts.svelte">Learn</a>
-  <a class="nav-link" href="/src/routes/chatbot/chatbot.svelte">Chatbot</a><a
+  <a class="nav-link active" href="/flirts">Learn</a>
+  <a class="nav-link" href="/chatbot">Chatbot</a><a
     class="nav-link"
-    href="/src/routes/preferences/preferences.svelte">Preferences</a
+    href="/preferences">Preferences</a
   >
   <!-- Add more links as needed -->
 </div>
